@@ -25,10 +25,10 @@ FEATURES = ['packet_size', 'latency', 'throughput', 'scenario', 'protocol',
 NUM_COLS = ['packet_size', 'latency', 'throughput', 'errors', 'retransmissions', 'bandwidth',
             'signal_strength', 'network_load','error_rate']
 CAT_COLS = ['scenario', 'protocol', 'sdwan_link_status', 'bgp_link_status', 'mpls_link_status',
-            'time_category']
+            'time_category','device_type']
 
 FEATURES_TO_ENCODE = ['scenario', 'protocol', 'sdwan_link_status', 'bgp_link_status', 
-                      'mpls_link_status', 'time_category']
+                      'mpls_link_status', 'time_category', 'device_type']
 
 # NEW_FEATURES = ['combined_load', 'efficiency', 'reliability_issues', 'signal_to_bandwidth']
 
