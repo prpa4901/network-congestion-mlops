@@ -1,3 +1,5 @@
+# all variables, constants, and paths definition
+
 import pathlib
 import os
 import pred_model
@@ -17,10 +19,10 @@ MODEL_TO_SAVE_PATH = os.path.join(PACKAGE_ROOT, 'trained_models')
 TARGET = 'congestion'
 
 # final set of features to be preserved
-FEATURES = ['packet_size', 'latency', 'throughput', 'scenario', 'protocol',
-       'errors', 'retransmissions', 'device_type', 'bandwidth',
-       'signal_strength', 'network_load', 'error_rate', 'sdwan_link_status',
-       'bgp_link_status', 'mpls_link_status', 'time_category']
+FINAL_FEATURES = ['packet_size', 'scenario', 'protocol', 'device_type',
+       'sdwan_link_status', 'bgp_link_status', 'mpls_link_status',
+       'time_category', 'combined_load', 'efficiency', 'reliability_issues',
+       'signal_to_bandwidth']
 
 NUM_COLS = ['packet_size', 'latency', 'throughput', 'errors', 'retransmissions', 'bandwidth',
             'signal_strength', 'network_load','error_rate']

@@ -1,3 +1,5 @@
+# file used for defining the stages of processing the data
+
 from sklearn.pipeline import Pipeline
 from pathlib import Path
 import os
