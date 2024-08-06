@@ -15,7 +15,7 @@ from sklearn.ensemble import RandomForestClassifier
 
 
 
-pipeline = Pipeline([
+cl_pipeline = Pipeline([
     ('MeanImputation', pp.MeanImputer(config.NUM_COLS)),
     ('ModeImputation', pp.ModeImputer(config.CAT_COLS)),
     ('FeatureEngineering', pp.NewFeatureEngg(config.EXISTING_COLS_FOR_NEW_FEATURES)),
