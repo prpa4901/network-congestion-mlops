@@ -19,7 +19,7 @@ cl_pipeline = Pipeline([
     ('MeanImputation', pp.MeanImputer(config.NUM_COLS)),
     ('ModeImputation', pp.ModeImputer(config.CAT_COLS)),
     ('FeatureEngineering', pp.NewFeatureEngg(config.EXISTING_COLS_FOR_NEW_FEATURES)),
-    ('DropFeatures', pp.DropColums(config.FEATURES_TO_DROP)),
+    ('DropFeatures', pp.DropColums(variables_to_drop=config.FEATURES_TO_DROP)),
     ('LabelEncoding', pp.CustomLabelEncoder(config.CAT_COLS)),
     ('LogTransform', pp.LogTransformer(config.LOG_TRANSFORM_COLS)),
     ('Scaling', MinMaxScaler()),

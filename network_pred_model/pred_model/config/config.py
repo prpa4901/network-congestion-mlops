@@ -2,9 +2,10 @@
 
 import pathlib
 import os
-import pred_model
+#import pred_model
 
-PACKAGE_ROOT = pathlib.Path(pred_model.__file__).resolve().parent
+PACKAGE_ROOT = pathlib.Path(os.path.dirname(__file__)).resolve().parent
+print(PACKAGE_ROOT)
 
 DATAPATH = os.path.join(PACKAGE_ROOT, "datasets")
 
@@ -19,10 +20,10 @@ MODEL_TO_SAVE_PATH = os.path.join(PACKAGE_ROOT, 'trained_models')
 TARGET = 'congestion'
 
 # final set of features to be preserved
-FINAL_FEATURES = ['packet_size', 'scenario', 'protocol', 'device_type',
-       'sdwan_link_status', 'bgp_link_status', 'mpls_link_status',
-       'time_category', 'combined_load', 'efficiency', 'reliability_issues',
-       'signal_to_bandwidth']
+FEATURES = ['packet_size', 'latency', 'throughput', 'scenario', 'protocol',
+       'errors', 'retransmissions', 'device_type', 'bandwidth',
+       'signal_strength', 'network_load', 'error_rate', 'sdwan_link_status',
+       'bgp_link_status', 'mpls_link_status', 'time_category']
 
 NUM_COLS = ['packet_size', 'latency', 'throughput', 'errors', 'retransmissions', 'bandwidth',
             'signal_strength', 'network_load','error_rate']
@@ -37,8 +38,8 @@ FEATURES_TO_ENCODE = ['scenario', 'protocol', 'sdwan_link_status', 'bgp_link_sta
 EXISTING_COLS_FOR_NEW_FEATURES = {
     'combined_load': ['throughput', 'latency'],
     'efficiency': ['bandwidth', 'errors'],
-    'reliability_issues': ['errors', 'retransmissions'],
-    'signal_to_bandwidth': ['signal_strength', 'bandwidth']
+    'signal_to_bandwidth': ['signal_strength', 'bandwidth'],
+    'reliability_issues': ['errors', 'retransmissions']
 }
 
 FEATURES_TO_DROP = ['network_load', 'error_rate', 'throughput', 'latency', 'errors', 'retransmissions', 
@@ -51,14 +52,16 @@ def validate_config():
     # Check if paths exist
     if not PACKAGE_ROOT.exists():
         raise FileNotFoundError(f"Package root not found: {PACKAGE_ROOT}")
-    if not DATAPATH.exists():
+    if not pathlib.Path(DATAPATH).exists():
         raise FileNotFoundError(f"Data path not found: {DATAPATH}")
-    if not MODEL_TO_SAVE_PATH.exists():
+    if not pathlib.Path(MODEL_TO_SAVE_PATH).exists():
         raise FileNotFoundError(f"Model save path not found: {MODEL_TO_SAVE_PATH}")
 
     # Check if target and features are correctly specified
-    if TARGET not in FEATURES:
+    '''
+    if TARGET not in congi:
         raise ValueError(f"Target {TARGET} is not in the list of features.")
+    '''
     
     # Add more checks as necessary
     print("Configuration validation passed.")

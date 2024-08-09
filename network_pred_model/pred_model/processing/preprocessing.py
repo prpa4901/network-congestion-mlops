@@ -54,7 +54,8 @@ class DropColums(BaseEstimator, TransformerMixin):
 
     def transform(self, X):
         X = X.copy()
-        X = X.drop(self.variables_to_drop, inplace=True)
+        # print(X.columns)
+        X = X.drop(columns = self.variables_to_drop)
         return X
 
 # FEATURE ENGINEERING
@@ -73,7 +74,7 @@ class NewFeatureEngg(BaseEstimator, TransformerMixin):
             elif new_feat == 'efficiency':
                 X[new_feat] = X[cols[0]] / (X[cols[1]] + 1)
             elif new_feat == 'reliability_issues':
-                X[new_feat] == X[cols[0]].fillna(0)+X[cols[1]].fillna(0)
+                X[new_feat] = X[cols[0]].fillna(0)+X[cols[1]].fillna(0)
             elif new_feat == 'signal_to_bandwidth':
                 X[new_feat] = X[cols[0]] / (X[cols[1]])   
         return X
