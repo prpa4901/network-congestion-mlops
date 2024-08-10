@@ -5,11 +5,11 @@ import sys
 
 PACKAGE_ROOT = Path(os.path.abspath(os.path.dirname(__file__))).parent
 print(PACKAGE_ROOT)
-sys.path.append(PACKAGE_ROOT)
+sys.path.append(str(PACKAGE_ROOT))
 
-from config import config
-from processing.data_handling import save_pipeline, load_dataset
-import pipeline as pipe
+from pred_model.config import config
+from pred_model.processing.data_handling import save_pipeline, load_dataset
+import pred_model.pipeline as pipe
 
 def perform_training():
     train_data = load_dataset(config.TRAIN_FILE)

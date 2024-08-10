@@ -6,16 +6,17 @@ import os
 import sys
 
 PACKAGE_ROOT = Path(os.path.abspath(os.path.dirname(__file__))).parent
-print(PACKAGE_ROOT)
-sys.path.append(PACKAGE_ROOT)
+print("Predict:"+str(PACKAGE_ROOT))
+sys.path.append(str(PACKAGE_ROOT))
+# sys.path.append(PACKAGE_ROOT)
 
 
-from config import config  
-from processing.data_handling import load_pipeline, load_dataset
+from pred_model.config import config  
+from pred_model.processing.data_handling import load_pipeline, load_dataset
 
 classification_model = load_pipeline(config.MODEL_NAME)
 
-def predict_congestion(data_input=config.TEST_FILE):
+def predict_congestion(data_input):
     try:
         data = pd.DataFrame(data_input)
     except Exception as e:
